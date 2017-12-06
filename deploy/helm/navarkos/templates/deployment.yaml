@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "name" . }}
+  namespace: {{ .Values.federationNamespace }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: POD_NAMESPACE
+          value: "{{ .Values.federationNamespace }}"
+        command:
+        - /navarkos
+        {{- if (not (empty .Values.glogLevel)) }}
+        - --v={{ .Values.glogLevel }}
+        {{- end }}
+        - --fkubeApiServer={{ .Values.federationEndpoint }}
+        {{- if (not (empty .Values.federationContext)) }}
+        - --fkubeName={{ .Values.federationContext }}
+        {{- end }}
+        {{- if (not (empty .Values.federationNamespace)) }}
+        - --fkubeNamespace={{ .Values.federationNamespace }}
+        {{- end }}
+        volumeMounts:
+        - mountPath: /etc/federation/controller-manager
+          name: {{ .Values.federationContext }}-controller-manager-kubeconfig
+          readOnly: true
+      serviceAccountName: federation-controller-manager
+      serviceAccount: federation-controller-manager
+      volumes:
+      - name: {{ .Values.federationContext }}-controller-manager-kubeconfig
+        secret:
+          secretName: {{ .Values.federationContext }}-controller-manager-kubeconfig

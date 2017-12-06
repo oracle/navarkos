@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: navarkos
+  namespace: $FED_NS
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: navarkos
+    spec:
+      containers:
+      - name: navarkos
+        image: $NAVARKOS_IMAGE
+        imagePullPolicy: Always
+        env:
+        - name: POD_NAMESPACE
+          value: $FED_NS
+        command:
+        - /navarkos
+        - --v=10
+        - --fkubeApiServer=$FED_API
+        - --fkubeName=$FED_CONTEXT
+        - --fkubeNamespace=$FED_NS
+        volumeMounts:
+        - mountPath: /etc/federation/controller-manager
+          name: $FED_CONTEXT-controller-manager-kubeconfig
+          readOnly: true
+      serviceAccountName: federation-controller-manager
+      serviceAccount: federation-controller-manager
+      volumes:
+      - name: $FED_CONTEXT-controller-manager-kubeconfig
+        secret:
+          secretName: $FED_CONTEXT-controller-manager-kubeconfig

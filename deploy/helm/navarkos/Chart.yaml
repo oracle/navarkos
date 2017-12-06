@@ -1,0 +1,8 @@
+apiVersion: v1
+description: A Helm chart for Navarkos
+name: navarkos
+version: 0.1.0
+keywords:
+  - navarkos
+maintainers:
+  - name: Navarkos Team

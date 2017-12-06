@@ -1,0 +1,38 @@
+package: github.com/kubernetes-incubator/navarkos
+import:
+- package: github.com/golang/glog
+- package: k8s.io/api
+  version: release-1.8
+  subpackages:
+  - extensions/v1beta1
+  - core/v1
+  - apps/v1
+- package: k8s.io/apimachinery
+  version: release-1.8
+  subpackages:
+  - pkg/apis/meta/v1
+  - pkg/runtime
+  - pkg/util/runtime
+  - pkg/util/sets
+  - pkg/util/wait
+  - pkg/watch
+- package: k8s.io/client-go
+  version: release-5.0
+  subpackages:
+  - kubernetes
+  - rest
+  - tools/cache
+  - tools/clientcmd
+- package: k8s.io/kubernetes
+  version: release-1.8
+  subpackages:
+  - federation/apis/federation/v1beta1
+  - federation/client/cache
+  - federation/client/clientset_generated/federation_clientset
+  - pkg/api
+  - pkg/controller
+- package: github.com/stretchr/testify
+  version: v1.1.3
+  subpackages:
+  - assert
+  - require
