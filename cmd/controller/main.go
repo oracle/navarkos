@@ -13,6 +13,7 @@ limitations under the License.
 package main
 
 import (
+	goflag "flag"
 	"fmt"
 	"github.com/golang/glog"
 	clustercontroller "github.com/kubernetes-incubator/navarkos/pkg/controller/cluster"
@@ -26,7 +27,6 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"os"
 	"time"
-	goflag "flag"
 )
 
 var Version string

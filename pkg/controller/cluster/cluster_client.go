@@ -33,7 +33,7 @@ import (
 )
 
 const (
-	//user agent for client
+	// UserAgentName is the user agent for client
 	UserAgentName = "Navarkos-Cluster-Controller"
 )
 
@@ -71,7 +71,7 @@ func NewClusterClientSet(c *federation_v1beta1.Cluster) (*ClusterClient, error) 
 }
 
 //GetClusterHealthStatus retrieves and return current health state of given cluster
-func (self *ClusterClient) GetClusterHealthStatus() *federation_v1beta1.ClusterStatus {
+func (clusterClient *ClusterClient) GetClusterHealthStatus() *federation_v1beta1.ClusterStatus {
 	clusterStatus := federation_v1beta1.ClusterStatus{}
 	currentTime := metav1.Now()
 	newClusterReadyCondition := federation_v1beta1.ClusterCondition{
@@ -106,7 +106,7 @@ func (self *ClusterClient) GetClusterHealthStatus() *federation_v1beta1.ClusterS
 		LastProbeTime:      currentTime,
 		LastTransitionTime: currentTime,
 	}
-	body, err := self.discoveryClient.RESTClient().Get().AbsPath("/healthz").Do().Raw()
+	body, err := clusterClient.discoveryClient.RESTClient().Get().AbsPath("/healthz").Do().Raw()
 	if err != nil {
 		clusterStatus.Conditions = append(clusterStatus.Conditions, newNodeOfflineCondition)
 	} else {
@@ -120,13 +120,13 @@ func (self *ClusterClient) GetClusterHealthStatus() *federation_v1beta1.ClusterS
 }
 
 // GetClusterZones gets the kubernetes cluster zones and region by inspecting labels on nodes in the cluster.
-func (self *ClusterClient) GetClusterZones() (zones []string, region string, err error) {
-	return getZoneNames(self.kubeClient)
+func (clusterClient *ClusterClient) GetClusterZones() (zones []string, region string, err error) {
+	return getZoneNames(clusterClient.kubeClient)
 }
 
 // GetClusterPods gets the number of pods in a given kubernetes cluster.
-func (self *ClusterClient) GetClusterPods() (allocatablePods int64, capacityPods int64, err error) {
-	return GetClusterPods(self.kubeClient)
+func (clusterClient *ClusterClient) GetClusterPods() (allocatablePods int64, capacityPods int64, err error) {
+	return GetClusterPods(clusterClient.kubeClient)
 }
 
 // Find the name of the zone in which a Node is running
