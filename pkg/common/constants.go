@@ -16,7 +16,7 @@ package common
 /*
 Common constant used to define annotation keys and default values
 as well as interface with other projects
- */
+*/
 
 const (
 	NavarkosClusterStateKey                            = "n6s.io/cluster.lifecycle.state" //communicates the cluster life cycle state
