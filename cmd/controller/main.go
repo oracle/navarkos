@@ -29,6 +29,7 @@ import (
 	"time"
 )
 
+// Version holds the version information injected during build
 var Version string
 
 func main() {
