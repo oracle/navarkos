@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/oracle/navarkos)](https://goreportcard.com/report/github.com/oracle/navarkos)
+<a href=“https://goreportcard.com/report/github.com/oracle/navarkos” rel=“nofollow”><img src=“https://goreportcard.com/badge/github.com/oracle/navarkos” alt=“Go Report Card” data-canonical-src=“https://goreportcard.com/badge/github.com/oracle/navarkos” style=“max-width:100%;“></a>
 
 # Navarkos
 
