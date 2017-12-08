@@ -1,6 +1,5 @@
-# Navarkos
-
 [![Go Report Card](https://goreportcard.com/badge/github.com/oracle/navarkos)](https://goreportcard.com/report/github.com/oracle/navarkos)
+# Navarkos
 
 Navarkos acts as a mediator between demand (deployment replicas) and supply (federated clusters). When you are deploying an application to a group of clusters, you need a way to distribute replicas of that application to multiple clusters. Navarkos helps in re-balancing replica allocation among clusters to optimize usage or load by analyzing:
 
