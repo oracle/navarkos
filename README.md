@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/oracle/navarkos)](https://goreportcard.com/report/github.com/oracle/navarkos)
+[![Go Report Card](https://goreportcard.com/badge/github.com/oracle/navarkos?a)](https://goreportcard.com/report/github.com/oracle/navarkos)
 
 # Navarkos
 
