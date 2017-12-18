@@ -1,3 +1,4 @@
+[![wercker status](https://app.wercker.com/status/65a1ed067b4b857b631988e0356cde86/s/master "wercker status")](https://app.wercker.com/project/byKey/65a1ed067b4b857b631988e0356cde86)
 [![Go Report Card](https://goreportcard.com/badge/github.com/oracle/navarkos?)](https://goreportcard.com/report/github.com/oracle/navarkos)
 
 # Navarkos
